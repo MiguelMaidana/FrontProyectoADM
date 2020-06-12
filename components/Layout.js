@@ -13,10 +13,10 @@ const Layout = ({children}) => {
         <>
             <Head>
                 <title>CRM - Administracion de Clientes</title>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" integrity="sha256-WAgYcAck1C1/zEl5sBl5cfyhxtLgKGdpI3oKyJffVRI=" crossorigin="anonymous" />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" integrity="sha256-WAgYcAck1C1/zEl5sBl5cfyhxtLgKGdpI3oKyJffVRI=" crossOrigin="anonymous" />
                 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"/>
             </Head>
-            {router.pathname ="/login" || router.pathname ==="/nuevacuenta"? (
+            {router.pathname ==="/login" || router.pathname ==="/nuevacuenta"? (
                 <div className="bg-gray-800 min-h-screen flex flex-col justify-center">
                     <div>
                         {children}
