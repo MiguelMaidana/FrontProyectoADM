@@ -59,11 +59,13 @@ const Login = () => {
                 //Guardar el Token  en el  storage
                 const {token} =   data.autenticarUsuario
                 localStorage.setItem('token',token)
-
+                //console.log(data)
                 //Redireccionar hacia clientes
                 setTimeout(() => {
                     guardarMensaje(null)
                     router.push("/")
+                    //client.clearStore()
+
                 }, 2000);
             }catch(error){
                 guardarMensaje(error.message)
