@@ -22,7 +22,7 @@ const Header = () => {
     // console.log(data)
     // console.log(loading)
     // console.log(error)
-     console.log(client)
+     //console.log(client)
 
 
     //Proteger que no accedamos a data antes de tener resulatados
