@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from "../components/Layout"
+import CLiente from "../components/Cliente"
 import {gql,useQuery} from "@apollo/client"
 import{useRouter} from "next/router"
 import Link from "next/link"
@@ -50,17 +51,19 @@ const Index = ()=>{
               <th className="w-1/5 py-2">Nombre</th>
               <th className="w-1/5 py-2">Empresa</th>
               <th className="w-1/5 py-2">Email</th>
+              <th className="w-1/5 py-2">Elminar</th>
 
             </tr>
 
           </thead>
           <tbody className="bg-white">
           {data.obtenerClientesVendedor.map(cliente=>(
-            <tr key={cliente.id}>
-              <td className="border px-4 py-2">{cliente.nombre} {cliente.apellido}</td>
-              <td className="border px-4 py-2">{cliente.empresa}</td>
-              <td className="border px-4 py-2">{cliente.email}</td>
-            </tr>
+            <CLiente
+              key={cliente.id}
+              cliente={cliente}
+            >
+
+            </CLiente>
           ))}
           </tbody>
 
