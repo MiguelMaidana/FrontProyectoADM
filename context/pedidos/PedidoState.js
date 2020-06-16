@@ -27,10 +27,32 @@ const PedidoState =({children})=>{
 
     //Modifica los productos
 
-    const agregarProducto = (productos)=>{
+    const agregarProducto = (productosSeleccionados)=>{
+       // console.log(productosSeleccionados)
+        let nuevoState;
+        if(state.productos.length>0){
+            nuevoState = productosSeleccionados.map(producto=>{
+                const nuevoObjeto = state.productos.find(productoState => productoState.id === producto.id);
+                return{
+                    ...producto, ...nuevoObjeto
+                }
+            })
+
+        }else{
+            nuevoState= productosSeleccionados
+        }
         dispatch({
             type: SELECCIONAR_PRODUCTO,
-            payload: productos
+            payload: nuevoState
+        })
+    }
+
+    //Modifica las cantidades de los productos
+    
+    const cantidadProductos =(nuevoProducto)=>{
+        dispatch({
+            type:CANTIDAD_PRODUCTOS,
+            payload : nuevoProducto
         })
     }
 
@@ -38,8 +60,10 @@ const PedidoState =({children})=>{
     return(
         <PedidoContext.Provider
         value={{
+            productos : state.productos,
             agregarCliente,
-            agregarProducto
+            agregarProducto,
+            cantidadProductos
         }}
         >{children}
 
