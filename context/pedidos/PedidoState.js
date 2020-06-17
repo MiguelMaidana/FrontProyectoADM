@@ -1,7 +1,7 @@
 import React,{useReducer} from "react"
 import PedidoContext from "./PedidoContext"
 import PedidoReducer from "./PedidoReducer"
-import {SELECCIONAR_CLIENTE,SELECCIONAR_PRODUCTO,CANTIDAD_PRODUCTOS} from "../../types"
+import {SELECCIONAR_CLIENTE,SELECCIONAR_PRODUCTO,CANTIDAD_PRODUCTOS,ACTUALIZAR_TOTAL} from "../../types"
 
 const PedidoState =({children})=>{
 
@@ -56,14 +56,24 @@ const PedidoState =({children})=>{
         })
     }
 
+    const actualizarTotal =()=>{
+        //console.log("Calculando...")
+        dispatch({
+            type:ACTUALIZAR_TOTAL
+        })
+    }
+
    
     return(
         <PedidoContext.Provider
         value={{
+            cliente: state.cliente,
             productos : state.productos,
+            total : state.total,
             agregarCliente,
             agregarProducto,
-            cantidadProductos
+            cantidadProductos,
+            actualizarTotal
         }}
         >{children}
 
