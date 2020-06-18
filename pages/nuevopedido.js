@@ -27,6 +27,30 @@ mutation nuevoPedido($input:PedidoInput){
         }
     }
 `
+const OBTENER_PEDIDO_VENDEDOR = gql`
+  query obtenerpedidosVendedor{
+    obtenerPediddosVendedor{
+      id
+      total
+      pedido{
+        id
+        cantidad
+        nombre
+        
+      }
+      cliente{
+        id
+        nombre
+        apellido
+        email
+        telefono
+      }
+      vendedor
+      total
+      estado
+    }
+  }
+`
 
 const NuevoPedido = () => {
 
@@ -42,13 +66,25 @@ const NuevoPedido = () => {
 
     //Mutation para crear un nuevo Pedido 
 
-    const [nuevoPedido] = useMutation(NUEVO_PEDIDO)
+    const [nuevoPedido] = useMutation(NUEVO_PEDIDO,{
+        update(cache,{data:{nuevoPedido}}){
+            const{obtenerPediddosVendedor} = cache.readQuery({
+                query:OBTENER_PEDIDO_VENDEDOR
+            });
+            cache.writeQuery({
+                query:OBTENER_PEDIDO_VENDEDOR,
+                data:{
+                    obtenerPediddosVendedor : [...obtenerPediddosVendedor, nuevoPedido]
+                }
+            })
+        }
+    })
    
     const validarPedido=()=>{
         return !productos.every(producto => producto.cantidad > 0) || total === 0 || cliente.length === 0 ? " opacity-50 cursor-not-allowed":"";
     }
 
-    console.log(productos)
+    //console.log(productos)
 
     const crearNuevoPedido = async()=>{
 
