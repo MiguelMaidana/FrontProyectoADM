@@ -3,7 +3,8 @@ import fetch from "node-fetch"
 import {setContext} from "apollo-link-context"
 
 const httplink = createHttpLink({
-    uri: 'http://https://floating-temple-79644.herokuapp.com/',
+    uri: 'https://floating-temple-79644.herokuapp.com/',
+    
         fetch
 });
 
